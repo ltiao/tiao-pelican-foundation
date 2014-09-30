@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ article.title|striptags }} - {{ super() }}
+{% endblock %}
+
+{% block meta %}
+  {% if article.author %}
+      <meta name="author" content="{{ article.author }}" />
+  {% else %}
+      <meta name="author" content="{{ AUTHOR }}" />
+  {% endif %}
+
+	{% for keyword in article.keywords %}
+		<meta name="keywords" contents="{{ keyword }}" />
+	{% endfor %}
+
+	{% for description in article.description %}
+		<meta name="description" contents="{{ description }}" />
+	{% endfor %}
+
+	{% for tag in article.tags %}
+		<meta name="tags" contents="{{ tag }}" />
+	{% endfor %}
+{% endblock %}
+
+{% block content %}
+<article>
+  <h3><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h3>
+ 	{% import 'translations.html' as translations with context %}
+ 	{{ translations.translations_for(article) }}
+
+  {{ article.content }}
+
+	<dl>
+		{% if article.authors %}
+		<dt>By</dt>
+		{% for author in article.authors %}
+	  <dd><a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a></dd>
+	 	{% endfor %}
+		{% endif %}
+
+	  <dt>Published</dt>
+	  <dd>
+	  	<abbr class="published" title="{{ article.date.isoformat() }}">
+				{{ article.locale_date }}
+			</abbr>
+		</dd>
+
+		{% if article.modified %}
+		  <dt>Last modified</dt>
+		  <dd>
+				<abbr class="modified" title="{{ article.modified.isoformat() }}">
+					{{ article.locale_modified }}
+				</abbr>
+			</dd>
+		{% endif %}
+	</dl>
+
+</article>
+{% endblock %}
