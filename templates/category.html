@@ -1,0 +1,9 @@
+{% extends "article_index.html" %}
+
+{% block title %}
+Articles in {{ category }} - {{ super() }}
+{% endblock %}
+
+{% block content_heading %}
+<h2>Articles <small>in {{ category }}</small></h2>
+{% endblock %}

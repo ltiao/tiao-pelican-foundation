@@ -1,0 +1,9 @@
+{% extends "article_index.html" %}
+
+{% block title %}
+Articles by {{ author }} - {{ super() }}
+{% endblock %}
+
+{% block content_heading %}
+<h2>Articles <small>by {{ author }}</small></h2>
+{% endblock %}

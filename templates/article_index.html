@@ -5,6 +5,7 @@ Articles - {{ super() }}
 {% endblock %}
 
 {% block content %}
+  {% block content_heading %}{% endblock %}
   {% if articles %}
     {% for article in (articles_page.object_list if articles_page else articles) %}
       <article>

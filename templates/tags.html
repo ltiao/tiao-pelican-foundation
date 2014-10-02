@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tags - {{ super() }}
+{% endblock %}
+
+{% block content %}
+	{% block content_heading %}
+	<h2>Tags <small>for {{ SITENAME }}</small></h2>
+	{% endblock %}
+  {%- for tag, articles in tags|sort %}
+		<a href="{{ SITEURL }}/{{ tag.url }}">
+  		<span class="round label">{{ tag }} ({{ articles|count }})</span>
+  	</a>
+  {% endfor %}
+{% endblock %}

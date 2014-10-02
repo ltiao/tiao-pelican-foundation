@@ -1,0 +1,9 @@
+{% extends "article_index.html" %}
+
+{% block title %}
+Articles tagged {{ tag }} - {{ super() }}
+{% endblock %}
+
+{% block content_heading %}
+<h2>Articles <small>tagged <span class="secondary round label">{{ tag }}</span></small></h2>
+{% endblock %}
